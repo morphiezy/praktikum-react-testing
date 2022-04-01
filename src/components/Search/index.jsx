@@ -1,5 +1,4 @@
 import React, {useState} from 'react';
-import { useInputValue } from '../../Hooks/useInputValue';
 import axios from 'axios';
  
 const URL = 'http://hn.algolia.com/api/v1/search';
@@ -8,7 +7,7 @@ export const Search = ()=> {
 
   const [stories, setStories] = useState([]);
   const [error, setError] = useState(null);
-  const [value, changeValue] = useInputValue("")
+  const [value, setValue] = useState("")
 
   const handleFetch = async ()=> {
     let result;
@@ -23,7 +22,7 @@ export const Search = ()=> {
   return (
     <div>
       <h2>Cari Cerita</h2>
-      <input value={value} onChange={e => changeValue(e.target.value)} type="text" placeholder="Tulis Cerita" />
+      <input value={value} onChange={e => setValue(e.target.value)} type="text" placeholder="Tulis Cerita" />
       <button type="button" onClick={handleFetch}>
         Cari Cerita
       </button> <br />
