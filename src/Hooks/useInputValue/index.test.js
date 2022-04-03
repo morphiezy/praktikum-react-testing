@@ -17,3 +17,14 @@ describe("when called updateValue", () => {
   });
 });
 
+describe("when rerender", () => {
+  it("update value by props", () => {
+    const { result, rerender } = renderHook(({ value }) => useInputValue(value), {
+      initialProps: { value : "Silicon" },
+    });
+
+    rerender({ value: "Silicon Valley"});
+    act(() => { result.current.updateByProps() })
+    expect(result.current.value).toEqual('Silicon Valley')
+  });
+});
